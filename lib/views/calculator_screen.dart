@@ -56,8 +56,9 @@ class _CalculatorState extends State<Calculator> {
           displayText = '$userInputA $method $userInputB';
         }
       }
-
+      displayText = method.isEmpty ? userInputA : '$userInputA $method $userInputB';
       textEditingController.text = displayText.toString().replaceAll('=', '');
+
     });
   }
 
@@ -87,8 +88,10 @@ class _CalculatorState extends State<Calculator> {
 
       setState(() {
         displayText = result.toString();
-        finalAnswer = displayText;
-        textEditingController.text == displayText;
+        finalAnswer =displayText;
+        textEditingController.text  == displayText;
+        // textEditingController.text == displayText;
+
       });
     }
   }
@@ -154,23 +157,23 @@ class _CalculatorState extends State<Calculator> {
                         {
                           group('Calculator Tests', () {
                             test('Addition test', () {
-                              final result = calculate(2, 3, '+');
+                              final result = calculate(double.parse(inputLists[index]), double.parse(inputLists[index]), '+');
                               expect(result, 5);
                             });
 
                             test('Subtraction test', () {
-                              final result = calculate(5, 3, '-');
+                              final result = calculate(double.parse(inputLists[index]), double.parse(inputLists[index]), '-');
                               expect(result, 2);
                             });
 
                             test('Modulus test', () {
-                              final result = calculate(10, 3, '%');
+                              final result = calculate(double.parse(inputLists[index]), double.parse(inputLists[index]), '%');
                               expect(result, 1);
                             });
 
                             test('Default case test', () {
                               final result = calculate(
-                                  10, 3, '*'); // Unsupported operation
+                                  double.parse(inputLists[index]), double.parse(inputLists[index]), '*'); // Unsupported operation
                               expect(result, 0);
                             });
                           }),
